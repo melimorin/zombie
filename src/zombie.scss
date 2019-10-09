@@ -1,0 +1,57 @@
+.sprite {
+	position: absolute;
+	width: var(--largeur);
+	height: var(--hauteur);
+}
+.zombie {
+	--largeur: 635px;
+	--hauteur: 544px;
+	--etat: 0;
+	--steps: 4;
+	background-image: url(../images/1-left-spritesheet.png);
+	background-position-y: calc(-1 * var(--hauteur) * var(--etat));
+	background-position-x: 0px;
+	background-repeat: no-repeat;
+	animation-name: cycle;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: steps(var(--steps));
+	animation-fill-mode: both;
+	// margin-left: -485px;
+	// margin-top: -473px;
+}
+[data-action='arret1'] {
+	--etat: 0;
+}
+[data-action='arret2'] {
+	--etat: 1;
+}
+[data-action='marche1'] {
+	--etat: 2;
+}
+[data-action='marche2'] {
+	--etat: 3;
+}
+[data-action='attaque'] {
+	--etat: 4;
+	--steps: 5;
+	animation-duration: 1s;
+}
+[data-action='mort'] {
+	--etat: 5;
+	--steps: 3;
+	animation-iteration-count: 1;
+	animation-duration: 3s;
+}
+@keyframes cycle {
+	0% {
+		background-position-y: calc(-1 * var(--hauteur) * var(--etat));
+		background-position-x: 0px;
+		// background-position-x: calc(-1 * var(--largeur) * var(--steps));
+	}
+	100% {
+		// background-position-x: 10px;
+		background-position-y: calc(-1 * var(--hauteur) * var(--etat));
+		background-position-x: calc(-1 * var(--largeur) * var(--steps));
+	}
+}
